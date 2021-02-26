@@ -20,3 +20,7 @@ Route::get('/SignIn', [PagesController::class, 'SignIn']);
 
 //This will show SignUp screen
 Route::get('/SignUp', [PagesController::class, 'SignUp']);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
