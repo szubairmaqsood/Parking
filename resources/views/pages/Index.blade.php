@@ -4,11 +4,11 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Sign In</title>
+        <title>{{config('app.name','Parking App')}}</title>
     </head>
 
 
     <body class="antialiased">
-       <h1>This is parking App Sign In</h1>
+       <h1>This is parking App Home Screen</h1>
     </body>
 </html>

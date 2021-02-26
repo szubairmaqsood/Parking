@@ -9,7 +9,7 @@ class PagesController extends Controller
     //This will show Home Screen Of App
     public function Index()
     {
-        return view('welcome');
+        return view('pages.index');
     }
 
     //This will show SignIn Of App
