@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\PagesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,16 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //This will show Home Screen
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[PagesController::class, 'index']);
 
-//This will show login screen
-Route::get('/SignIn', function () {
-    return view('pages.SignIn');
-});
+//This will show SignIn screen
+Route::get('/SignIn', [PagesController::class, 'SignIn']);
 
 //This will show SignUp screen
-Route::get('/SignUp', function () {
-    return view('pages.SignUp');
-});
+Route::get('/SignUp', [PagesController::class, 'SignUp']);
