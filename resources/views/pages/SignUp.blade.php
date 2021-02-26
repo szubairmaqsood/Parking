@@ -14,17 +14,23 @@
 
 
     <body class="antialiased">
-    <form action="#">
+      @include('inc.messages');
+      {{ Form::open(array('url' => 'SignUpSubmit', 'method' => 'post')) }}
     <div class="container">
        <h2>Sign Up</h2>
 
        <div class="form-group">
+        <label for="Name">Name:</label>
+        <input type="text" class="form-control" id="Name" required name="Name">
+      </div>
+
+       <div class="form-group">
         <label for="Email">Email:</label>
-        <input type="text" class="form-control" id="Email" required>
+        <input type="text" class="form-control" id="Email" required name="Email">
       </div>
       <div class="form-group">
         <label for="pwd">Password:</label>
-        <input type="password" class="form-control" id="pwd" required>
+        <input type="password" class="form-control" id="pwd" required name="Password">
       </div>
 
       <label >Role:</label>
@@ -36,7 +42,7 @@
 
       <button type="submit" class="btn btn-primary">Sign Up</button>
       <div>
-      </form>
+        {{ Form::close() }}
 
 
 

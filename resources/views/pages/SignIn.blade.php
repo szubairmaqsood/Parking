@@ -12,19 +12,20 @@
         <title>Sign In</title>
     </head>
 
-
+     
     <body class="antialiased">
-    <form action="#">
+      @include('inc.messages');
+      {{ Form::open(array('url' => 'SignInSubmit', 'method' => 'post')) }}
     <div class="container">
        <h2>Sign In</h2>
 
        <div class="form-group">
         <label for="Email">Email:</label>
-        <input type="text" class="form-control" id="Email" required>
+        <input type="text" class="form-control" id="Email" name="Email" required>
       </div>
       <div class="form-group">
         <label for="pwd">Password:</label>
-        <input type="password" class="form-control" id="pwd" required>
+        <input type="password" class="form-control" id="pwd" name="Password" required>
       </div>
 
       <button type="submit" class="btn btn-primary">Sign In</button>
