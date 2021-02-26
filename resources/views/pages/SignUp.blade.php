@@ -1,0 +1,1 @@
+<h1>This is singn up Page empty template</h1>

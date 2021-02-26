@@ -19,10 +19,10 @@ Route::get('/', function () {
 
 //This will show login screen
 Route::get('/SignIn', function () {
-    return "Please login";
+    return view('pages.SignIn');
 });
 
 //This will show SignUp screen
 Route::get('/SignUp', function () {
-    return "SignUp";
+    return view('pages.SignUp');
 });
