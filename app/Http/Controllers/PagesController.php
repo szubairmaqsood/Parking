@@ -24,4 +24,9 @@ class PagesController extends Controller
     {
         return view('pages.SignUp');
     }
+
+    public function OwnerLocationForm()
+    {
+        return view('Owners.LocationForm');
+    }
 }
