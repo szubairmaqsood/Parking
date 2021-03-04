@@ -1,0 +1,23 @@
+.tableBody input ,.tableBody select{
+    width: 100%;
+}
+.tableBody
+{
+font-family: Inter,"Source Sans Pro",Helvetica,Arial,sans-serif;
+}
+tr,td,th
+{
+  border-color: #e8e8e8 !important;
+}
+.tableBody>tr:nth-child(odd) {
+  background-color: #f2f2f2;
+   
+  }
+
+
+
+
+  .tableBody>tr:nth-child(even) {
+    
+   
+  }

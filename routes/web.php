@@ -18,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //This will show Home Screen
+
+Route::get('/welcome',function()
+{
+    return view ('welcome');
+});
 Route::get('/',[PagesController::class, 'index']);
 
 //This will show SignIn screen
@@ -27,7 +32,9 @@ Route::get('/SignUp', [PagesController::class, 'SignUp']);
 //This will show owner location Form
 Route::get('/OwnerLocationForm', [PagesController::class, 'OwnerLocationForm']);
 
+//This will show Location   Page
 
+Route::get('/AdminLocationPage', [PagesController::class, 'AdminLocationPage']);
 
 
 //Sin up form submit

@@ -1,4 +1,9 @@
 import React, { Component } from "react";
+import ReactDOM from 'react-dom';
+
+
+
+
 
 class OwnerLocationForm extends Component
 {
@@ -17,7 +22,7 @@ $(window).on('load', function() {
     }
     else
     {
-        alert("Hello");
+        alert("HelloOWfORM");
     }
     
    })

@@ -1,0 +1,16 @@
+.LocationTable
+{
+  min-height: 100% !important;
+}
+tr,td,th {
+    border-bottom: 1px solid black;
+  }
+  th, td {
+    padding-left:8px;
+    padding-right:15px;
+    text-align: left;
+  }
+
+tr{
+  height: 100px;
+}

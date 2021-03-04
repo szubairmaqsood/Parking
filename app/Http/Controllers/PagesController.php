@@ -25,8 +25,15 @@ class PagesController extends Controller
         return view('pages.SignUp');
     }
 
+    //Owner Location Form
     public function OwnerLocationForm()
     {
         return view('Owners.LocationForm');
+    }
+
+    //Admin
+    public function AdminLocationPage()
+    {
+        return view('Admin.LocationPage');
     }
 }

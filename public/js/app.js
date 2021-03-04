@@ -1853,9 +1853,23 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
  */
 
 
-__webpack_require__(/*! ./components/Example */ "./resources/js/components/Example.js");
+__webpack_require__(/*! ./components/Example */ "./resources/js/components/Example.js"); //Admin
 
-__webpack_require__(/*! ./components/OwnerLocationForm */ "./resources/js/components/OwnerLocationForm.js");
+
+__webpack_require__(/*! ./components/Admin/Location/Page/LocationPage */ "./resources/js/components/Admin/Location/Page/LocationPage.jsx");
+/*
+alert("BICO");
+window.onload=function(){
+if (document.getElementById('root')) {
+   
+    alert("Hello1");
+  }
+  else
+  {
+      alert("Helo2");
+  }
+}
+*/
 
 /***/ }),
 
@@ -1903,6 +1917,221 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/components/Admin/Location/Page/LocationPage.jsx":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/Admin/Location/Page/LocationPage.jsx ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+var LocationPage = /*#__PURE__*/function (_Component) {
+  _inherits(LocationPage, _Component);
+
+  var _super = _createSuper(LocationPage);
+
+  function LocationPage() {
+    _classCallCheck(this, LocationPage);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(LocationPage, [{
+    key: "render",
+    value:
+    /*
+    
+        state = {  
+            columns:[
+            {label:"Name",path:"name", content:Location=><NavLink to={`/LacationPage/${_.get(Location,'id')}`}>{Location.name}</NavLink>},
+                {label:"# OfParking Slots",path:"NumberOfParkingSlots"},
+                {label:"Per Spot Charge",path:"PerSpotCharge"},
+                {label:"Opening Time",path:"OpeningTime"},
+                {label:"Closing Time",path:"ClosingTime"},
+                {label:"Latitude",path:"Latitude"},
+                {label:"Longitude",path:"Longitude"},
+                {label:"Status",path:"LocationStatus",content:(Location) =>getATypeName(_.get(Location,'LocationStatus'))},
+                
+                
+        ],
+        SelectedStatus:null,
+        Status:[],
+        SearchQuery:"",
+        CurrentPage:1,
+        PageSize:4,
+        sortColumn:{path: "name" ,order:"asc"},
+        
+        }
+    
+        Title="Locations | Parking Solution";
+    
+       
+    
+        async componentDidMount()
+      {
+        const types=[{id:"" ,name:'All Status'},...getTypes(),];
+        document.title = this.Title;
+        const data=(await axios.get('http://localhost/PARKING/public/api/Location')).data;
+        this.setState({types,data});
+      }
+    
+    
+    
+      handleTypeChange =(Status) =>
+      {
+        this.setState({SearchQuery:"",SelectedStatus:Status,CurrentPage:1});
+      }
+    
+      handleSearchBarChange =(e) =>
+      {
+       const  SearchQuery=e.target.value;
+       this.setState({SearchQuery, SelectedType:null, CurrentPage:1});
+      }
+    
+      handlePageChange=(PageNumber)=>
+      {
+        this.setState({CurrentPage:PageNumber});
+      }
+    
+    
+      handleSort=(sortColumn)=>
+      {
+        this.setState({sortColumn});
+      }
+    
+    
+    
+    
+    FilterbySearchQuery=(data)=>
+    {
+      return    this.state.SearchQuery  ? data.filter((d) =>d.name.toLowerCase().startsWith(this.state.SearchQuery.toLowerCase() ) )  : data;
+    }
+    
+      FilterByStatus=(data) =>
+      {
+      
+        return     this.state.SelectedStatus  &&   this.state.SelectedStatus.id ? data.filter((d) =>d.Status===this.state.SelectedStatus.id)   : data;
+      }
+    
+      FilterBySort=(data)=>
+      {
+        return _.orderBy(data,this.state.sortColumn.path,this.state.sortColumn.order);
+      }
+    
+      FilterByPage=(data)=>
+      {
+         const startIndex=(this.state.CurrentPage-1)*this.state.PageSize;
+        return _(data).slice(startIndex).take(this.state.PageSize).value();
+      }
+    
+       getItemData()
+      {
+        const filterBySearchQueryData= this.FilterbySearchQuery(this.state.data);
+        const filerByTypeData=this.FilterByStatus(filterBySearchQueryData);
+        const sorted=this.FilterBySort(filerByTypeData);
+        const filterByPageData=this.FilterByPage(sorted);
+        return   filterByPageData;
+      }
+    
+        getNumberOfPagesOfData =()=>
+      {
+        const filterBySearchQueryData=this.FilterbySearchQuery(this.state.data);
+        const filerByTypeData=this.FilterByType(filterBySearchQueryData);
+        return filerByTypeData.length;
+      }
+    
+    
+    */
+    function render() {
+      /*
+       let data;
+       let numberOfRecords;
+       if(this.state.data)
+       {
+       data=this.getItemData();
+       numberOfRecords=this.getNumberOfPagesOfData();
+       }
+       
+      */
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        children: "This is location Page"
+      })
+      /*
+      <div className="ItemPage">
+       
+      <SearchBar value={this.state.SearchQuery} handleChange={this.handleSearchBarChange}></SearchBar>
+      <NavLink to="/LocationPage/New" ><button className="NewButton">+ New</button></NavLink> 
+      { this.state.data &&
+       <div>
+      <div className="ItemPageContentArea">
+      <div>
+      <Filter options={this.state.Status} textProperty="name" idProperty="_id" onClick={this.handleTypeChange} selectedOption={this.state.SelectedStatus}></Filter> 
+      </div>
+      <div>
+      <ItemTable  columns={this.state.columns} data={data} onSort={this.handleSort} sortColumn={this.state.sortColumn}></ItemTable >
+      </div>
+      </div>
+      <div className="Paginationdiv">
+      <Pagination pageSize={this.state.PageSize} numberOfRecords={numberOfRecords}  CurrentPage ={this.state.CurrentPage} onClick={this.handlePageChange}></Pagination>
+      </div>
+      </div>
+      }
+      
+       </div>
+      */
+      ;
+    }
+  }]);
+
+  return LocationPage;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (LocationPage);
+
+if (document.getElementById('root')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(LocationPage, {}), document.getElementById('root'));
+  alert("Hello1");
+} else {
+  alert("LocationPage");
+}
+
+/***/ }),
+
 /***/ "./resources/js/components/Example.js":
 /*!********************************************!*\
   !*** ./resources/js/components/Example.js ***!
@@ -1946,81 +2175,12 @@ function Example() {
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Example);
 
-if (document.getElementById('example')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Example, {}), document.getElementById('example'));
+if (document.getElementById('root')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Example, {}), document.getElementById('root'));
+  alert("Hello1");
+} else {
+  alert("HelloEXAM");
 }
-
-/***/ }),
-
-/***/ "./resources/js/components/OwnerLocationForm.js":
-/*!******************************************************!*\
-  !*** ./resources/js/components/OwnerLocationForm.js ***!
-  \******************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
-
-
-var OwnerLocationForm = /*#__PURE__*/function (_Component) {
-  _inherits(OwnerLocationForm, _Component);
-
-  var _super = _createSuper(OwnerLocationForm);
-
-  function OwnerLocationForm() {
-    _classCallCheck(this, OwnerLocationForm);
-
-    return _super.apply(this, arguments);
-  }
-
-  _createClass(OwnerLocationForm, [{
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", {
-        children: "This is owner Location Form 1"
-      });
-    }
-  }]);
-
-  return OwnerLocationForm;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (OwnerLocationForm);
-$(window).on('load', function () {
-  if (document.getElementById('root')) {
-    ReactDOM.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(OwnerLocationForm, {}), document.getElementById('root'));
-  } else {
-    alert("Hello");
-  }
-});
 
 /***/ }),
 
@@ -66875,6 +67035,18 @@ if (false) {} else {
 /******/ 	// It's empty as some runtime module handles the default behavior
 /******/ 	__webpack_require__.x = x => {};
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
 /******/ 		// define getter functions for harmony exports

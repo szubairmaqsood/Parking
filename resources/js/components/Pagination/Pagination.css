@@ -1,0 +1,19 @@
+.Pagination > ul {
+    list-style-type: none;
+  }
+  
+  .Pagination > ul > li {
+    display: inline;
+    padding: 10px;
+    border: 1px solid #e8e8e8;
+    cursor: pointer;
+    color: #3d79b8;
+  }
+  
+  .Pagination > ul > li:hover {
+  }
+  
+  .ActivePage {
+    color: white !important;
+    background-color: #3d79b8;
+  }

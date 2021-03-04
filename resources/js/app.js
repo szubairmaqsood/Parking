@@ -13,4 +13,20 @@ require('./bootstrap');
  */
 
 require('./components/Example');
-require('./components/OwnerLocationForm');
+
+
+//Admin
+require('./components/Admin/Location/Page/LocationPage');
+/*
+alert("BICO");
+window.onload=function(){
+if (document.getElementById('root')) {
+   
+    alert("Hello1");
+  }
+  else
+  {
+      alert("Helo2");
+  }
+}
+*/

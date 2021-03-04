@@ -14,10 +14,10 @@
 
      
     <body class="antialiased">
-      @include('inc.messages');
+      @include('inc.messages')
       {{ Form::open(array('url' => 'OwnerLocationFormSubmit', 'method' => 'post')) }}
     <div class="container">
-       <h2>Enter Location Information</h2>
+       <h2 id="temp head">Enter Location Information</h2>
 
        <div class="form-group">
         <label for="Name">Name:</label>
@@ -58,17 +58,17 @@
 
     <div>
       <button type="submit" class="btn btn-primary">Submit</button>
-    </div id="root">
-     </div>
+    <div id="root"></div>
     </div>
-      <div>
+      
       </form>
 
 
 
     </body>
-    <script>
-    $(window).on('load', function() {
-    <script  type="text/javascript" src="{{ asset('js/app.js')}}"></script>
-    </script>
+    
+  
+  <script defer type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+
+    
 </html>

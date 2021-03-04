@@ -19,6 +19,11 @@ function Example() {
 
 export default Example;
 
-if (document.getElementById('example')) {
-    ReactDOM.render(<Example />, document.getElementById('example'));
+if (document.getElementById('root')) {
+    ReactDOM.render(<Example />, document.getElementById('root'));
+    alert("Hello1");
+}
+else
+{
+    alert("HelloEXAM");
 }
