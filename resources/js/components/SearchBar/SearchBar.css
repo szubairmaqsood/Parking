@@ -1,0 +1,19 @@
+.searchBar {
+    padding-left: 2%;
+    padding-right: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid #e8e8e8;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  
+  .searchBar > input {
+    height: 100%;
+    border: none;
+    width: 90%;
+  }
+  
+  .searchBar > input:focus {
+    outline-width: 0px;
+  }

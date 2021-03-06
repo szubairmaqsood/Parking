@@ -1,10 +1,27 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router,NavLink, Route } from 'react-router-dom';
 import axios from 'axios';
+import SearchBar from '../../../SearchBar/SearchBar';
+import Filter from '../../../Filter/Filter';
+import LocationTable from '../LocationTable/LocationTable';
+import Pagination from '../../../Pagination/Pagination';
+
 
 
 class LocationPage extends Component {
-/*
+
+   async getAStatusName(id)
+  {
+    const response=( await axios.get(`http://localhost/Parking/public/api/getAStatusName/${id}`));
+    console.log(response.data);
+    return response.data;
+  }
+
+  getStatusName(id)
+  {
+    return this.getAStatusName(id);
+  }
 
     state = {  
         columns:[
@@ -15,7 +32,9 @@ class LocationPage extends Component {
             {label:"Closing Time",path:"ClosingTime"},
             {label:"Latitude",path:"Latitude"},
             {label:"Longitude",path:"Longitude"},
-            {label:"Status",path:"LocationStatus",content:(Location) =>getATypeName(_.get(Location,'LocationStatus'))},
+          {/*
+            {label:"Status",path:"LocationStatus",content:(Location) =>this.getStatusName(_.get(Location,'LocationStatus'))},
+          */}
             
             
     ],
@@ -23,26 +42,30 @@ class LocationPage extends Component {
     Status:[],
     SearchQuery:"",
     CurrentPage:1,
-    PageSize:4,
+    PageSize:1,
     sortColumn:{path: "name" ,order:"asc"},
     
     }
 
     Title="Locations | Parking Solution";
 
-   
+  
 
     async componentDidMount()
   {
-    const types=[{id:"" ,name:'All Status'},...getTypes(),];
+    let LocationStatus=await axios.get('http://localhost/Parking/public/api/LocationStatus');
+    console.log(LocationStatus.data);
+    //const types=[{id:"" ,name:'All Status'},...LocationStatus];
+    
+    
     document.title = this.Title;
-    const data=(await axios.get('http://localhost/PARKING/public/api/Location')).data;
-    this.setState({types,data});
+    const data=(await axios.get('http://localhost/Parking/public/api/Location'));
+    this.setState({LocationStatus:LocationStatus.data,data:data.data});
   }
 
 
 
-  handleTypeChange =(Status) =>
+  handleStatusChange =(Status) =>
   {
     this.setState({SearchQuery:"",SelectedStatus:Status,CurrentPage:1});
   }
@@ -101,16 +124,15 @@ FilterbySearchQuery=(data)=>
     getNumberOfPagesOfData =()=>
   {
     const filterBySearchQueryData=this.FilterbySearchQuery(this.state.data);
-    const filerByTypeData=this.FilterByType(filterBySearchQueryData);
+    const filerByTypeData=this.FilterByStatus(filterBySearchQueryData);
     return filerByTypeData.length;
   }
 
 
-*/
 
 
    render() { 
-   /*
+   
     let data;
     let numberOfRecords;
     if(this.state.data)
@@ -119,35 +141,39 @@ FilterbySearchQuery=(data)=>
     numberOfRecords=this.getNumberOfPagesOfData();
     }
     
-*/
+
     
     return ( 
 
-      <div>This is location Page</div>
+      //<div>This is location Page</div>
 
-    /*
+    
     <div className="ItemPage">
-     
+     <Router>
     <SearchBar value={this.state.SearchQuery} handleChange={this.handleSearchBarChange}></SearchBar>
     <NavLink to="/LocationPage/New" ><button className="NewButton">+ New</button></NavLink> 
+    
     { this.state.data &&
      <div>
     <div className="ItemPageContentArea">
     <div>
-    <Filter options={this.state.Status} textProperty="name" idProperty="_id" onClick={this.handleTypeChange} selectedOption={this.state.SelectedStatus}></Filter> 
+    <Filter options={this.state.Status} textProperty="name" idProperty="_id" onClick={this.handleStatusChange} selectedOption={this.state.SelectedStatus}></Filter> 
     </div>
     <div>
-    <ItemTable  columns={this.state.columns} data={data} onSort={this.handleSort} sortColumn={this.state.sortColumn}></ItemTable >
+      
+    <LocationTable  columns={this.state.columns} data={data} onSort={this.handleSort} sortColumn={this.state.sortColumn}></LocationTable >
+      
     </div>
     </div>
    <div className="Paginationdiv">
     <Pagination pageSize={this.state.PageSize} numberOfRecords={numberOfRecords}  CurrentPage ={this.state.CurrentPage} onClick={this.handlePageChange}></Pagination>
     </div>
     </div>
-   }
    
+  }
+    </Router>
      </div>
-    */  
+    
 
          );
    

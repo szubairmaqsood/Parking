@@ -23,10 +23,10 @@ class TableBody extends Component {
             <tbody className="tableBody">
             {
                 data.map((Item) =>(
-                 <tr key={Item._id}>
+                 <tr key={Item.id}>
         
                   {columns.map((column) =>(
-                  <td key={Item._id + (column.path ||column.key)}>
+                  <td key={Item.id + (column.path ||column.key)}>
                       { this.renderCell(Item,column) }
                      
                     </td>))}

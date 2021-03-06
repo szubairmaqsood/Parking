@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LocationsController;
+use App\Http\Controllers\LocationStatusController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +22,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('Location',[LocationsController::class, 'index']);
+Route::get('LocationStatus',[LocationStatusController::class, 'index']);
+Route::get('getAStatusName/{id}',[LocationStatusController::class, 'getAStatusName']);
 

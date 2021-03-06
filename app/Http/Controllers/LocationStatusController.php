@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\LocationResource;
-use App\Models\Location;
-use Facade\Ignition\DumpRecorder\Dump;
+use App\Models\LocationStatus;
 use Illuminate\Http\Request;
+use App\Http\Resources\LocationStatusResource;
 
-class LocationsController extends Controller
+class LocationStatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +16,9 @@ class LocationsController extends Controller
     public function index()
     {
         //
-        $Locations=Location::all();
-        //Dump($Locations);
-        return LocationResource::collection($Locations);
+        $LocationStatus=LocationStatus::all();
+        //var_dump($LocationStatus);
+        return LocationStatusResource::collection($LocationStatus);
     }
 
     /**
@@ -86,5 +85,11 @@ class LocationsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getAStatusName($id)
+    {
+        $name = LocationStatus::where('id', $id)->first()->name;
+        return $name;
     }
 }
